@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { iMovie, iMovies } from "../interfaces/movies.interface";
+import { iMovie, iMovies, iMoviesReturn } from "../interfaces/movies.interface";
 import { deleteMovieService } from "../services/movie/deleteMovie.service";
 import { getAllMoviesService } from "../services/movie/getAllMovies.service";
 import { patchMovieService } from "../services/movie/patchMovie.service";
@@ -18,7 +18,7 @@ const getAllMoviesController = async (
   req: Request,
   res: Response
 ): Promise<Response> => {
-  const movies: iMovies = await getAllMoviesService(req);
+  const movies: iMoviesReturn = await getAllMoviesService(req);
 
   return res.status(200).json(movies);
 };

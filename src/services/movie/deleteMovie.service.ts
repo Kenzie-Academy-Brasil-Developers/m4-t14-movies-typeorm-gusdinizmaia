@@ -1,9 +1,9 @@
 import { Repository } from "typeorm";
-import AppDataSource from "../../data-source";
-import { Movies } from "../../entities";
+import { AppDataSource } from "../../data-source";
+import { Movie } from "../../entities";
 
 const deleteMovieService = async (id: number) => {
-  const movieRepo: Repository<Movies> = AppDataSource.getRepository(Movies);
+  const movieRepo: Repository<Movie> = AppDataSource.getRepository(Movie);
 
   const deleteMovie = await movieRepo.findOneBy({ id: id });
 

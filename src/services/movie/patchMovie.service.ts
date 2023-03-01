@@ -1,13 +1,14 @@
 import { Repository } from "typeorm";
-import AppDataSource from "../../data-source";
-import { Movies } from "../../entities";
+import { AppDataSource } from "../../data-source";
+import { Movie } from "../../entities";
 import { iMovie, iMovieUpdate } from "../../interfaces/movies.interface";
+import { verifyName } from "../../middlewares/vefiryName.middleware";
 
 const patchMovieService = async (
   movie: iMovieUpdate,
   id: number
 ): Promise<iMovie> => {
-  const movieRepo: Repository<Movies> = AppDataSource.getRepository(Movies);
+  const movieRepo: Repository<Movie> = AppDataSource.getRepository(Movie);
 
   const oldMovie = await movieRepo.findOneBy({ id: id });
 

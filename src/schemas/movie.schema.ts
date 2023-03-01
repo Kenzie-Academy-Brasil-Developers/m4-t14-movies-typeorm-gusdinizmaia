@@ -4,9 +4,13 @@ const movieSchema = z.object({
   id: number(),
   name: string().max(50),
   description: string().optional(),
-  duration: number(),
-  price: number(),
+  duration: number().int().min(1, "Number must be greater than 0"),
+  price: number().int(),
 });
+
+const movieKeysSchema = Object.keys(
+  movieSchema.omit({ description: true }).shape
+);
 
 const arrayMoviesSchema = z.array(movieSchema);
 
@@ -21,6 +25,7 @@ const movieSortSchema = movieCreateSchema.omit({
 
 export {
   movieSchema,
+  movieKeysSchema,
   arrayMoviesSchema,
   movieCreateSchema,
   moviePatchSchema,
